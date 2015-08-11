@@ -1,0 +1,220 @@
+FORMAT: 1A
+HOST: http://dataport.triled.be/
+
+# TriLED dataport
+
+API Definition of the TriLED dataport. The API adherse 
+
+Requirements:
+* have an overview of what's available on a dataport (config, access points, nodes, etc.)
+* read variables (nvi, nvo, nci)
+* write variables (nvi, nci)
+* It must be possible to change the power state of an access point: on/off
+* change the registration mode state of an access point: on/off
+* change the registration mode state of a node: on/off
+* upgrade firmware of nodes
+* query for a list of Access Points
+* query for a list of Nodes
+
+# Group General
+## Index [/v1/]
+### Do request [GET]
+
++ Response 200 (application/json)
+
+        {
+            "msg": "Hello World"
+        }
+
+# Group Access Points
+    
+## List Power Supplies [/v1/accesspoints/]
+Returns a list of access points.
+
+### Overview [GET]
+
++ Response 200 (application/json)
+
+        {
+            "count": 1,
+            "results": [
+                {
+                    "id": "00-01-02-03-04-05",
+                    "state_power": "on",
+                    "state_registration_mode": "off",
+                    "config": {
+                        "foo": "bar"    
+                    },
+                    "energy_meter": {
+                        "calibrate": ""
+                    }
+                    "power": {
+                        "output": true,
+                        "voltage": "101",
+                        "current": "2"
+                    }
+                }
+            ]
+        }
+
+## Access Point Details [/v1/accesspoints/{id}/]
+A single access point object with all its details.
+
++ Parameters
+    + id (required, string, `00-01-02-03-04-05`) ... unique id of a access point
+
++ Model (application/json)
+
+        {
+            "id": "00-01-02-03-04-05",
+            "state_power": "on",
+            "state_registration_mode": "off",
+            "config": {
+                "foo": "bar"    
+            },
+            "energy_meter": {
+                "calibrate": ""
+            }
+            "power": {
+                "output": true,
+                "voltage": "101",
+                "current": "2"
+            }
+        }
+
+### Access point Details [GET]
++ Attributes
+    + id: "00-01-02-03-04-05" (string, required) - unique id of the access point
+    + state_power: on (string, required) - state of the power, on/off
+    + state_registration_mode: off (string, required) - is the unit in registration mode or not
+    + config (object, required) - Info about the unit configuration
+    + energy_meter (object, required) - Stats about the energy meter
+    + power (object, required) - Stats about the power state
+        
++ Response 200
+
+    [Access Point Details][]
+    
+### Change states [PUT]
+You can change the state of the `power` and the `registration_mode` of an access point. 
+
++ Request ChangeStatePower (application/json)
+
+        {
+            "state_power": "off"
+        }
+        
++ Response 200
+
+    [Access Point Details][]
+
++ Request ChangeStateRegistrationMode (application/json)
+
+        {
+            "state_registration_mode": "on"
+        }
+        
++ Response 200
+
+    [Access Point Details][]
+
+# Group Nodes
+## List Nodes [/v1/accesspoints/{accessPointId}/nodes/]
+### Overview [GET]
++ Response 200
+
+        {
+            "count": 2,
+            "results": [
+                {
+                    "id": "00-01-02-03-04-05",
+                    "firmware": "firmware_v1.1.bin",
+                    "objects": [
+                    ]
+                },
+                {
+                }
+            ]
+        }
+
+## Node Details [/v1/accesspoints/{accessPointId}/nodes/{nodeId}/]
+Get details about a specific node & upgrade its firmware. A node is a group of LED lights.
+
++ Parameters
+    + accessPointId (required, string, `00-01-02-03-04-05`) ... unique id of a access point
+    + nodeId (required, string, `00-01-02-03-04-05`) ... unique id of a node
+
++ Model (application/json)
+
+        {
+            "id": "00-01-02-03-04-05",
+            "firmware": "firmware_v1.1.bin",
+            "objects": [
+            ]
+        }
+        
+### Node Details [GET]
++ Response 200 
+    
+    [Node Details][]
+
+### Upgrade firmware [PUT]
+Put a json body with the firmware filename to you want on the node. 
+The server responds with a 200 status code if the firmware was succesfully upgraded.
+If the firmware is not available to server will respond with a 400 status code. 
+You'll have to upload the new firmware first, cfr: `POST /v1/firmwares/`
+
++ Request (application/json)
+    
+        {
+            "firmware": "firmware_v1.1.bin"
+        }
+
++ Response 200 
+
+    [Node Details][]
+    
++ Response 400 (application/json)
+
+        {
+            "error": "firmware_unavailable"
+        }
+    
+# Group Firmwares
+Get an overview of available firmware on the dataport. 
+By posting a binary to this URI you'll be able to make new firmware available for nodes.
+
+## List Firmwares [/v1/firmwares/]
+### Overview [GET]
++ Response 200 (application/json)
+
+        {
+            "count": 2,
+            "results": [
+                "firmware_v1.0.bin",
+                "firmware_v1.1.bin"
+            ]
+        }
+
+### Upload [POST]
++ Request (multipart/form-data; boundary=---BOUNDARY)
+
+        -----BOUNDARY
+        Content-Disposition: form-data; name="file"; filename="firmware_v1.1.bin"
+        Content-Type: application/octet-stream
+        Content-Transfer-Encoding: base64
+
+        /9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0a
+        HBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIy
+        MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAABAAEDASIA
+        AhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEB
+        AAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AL+AD//Z
+        -----BOUNDARY
+
++ Response 201 (application/json)
+
+        {
+            "file": "firmware_v1.1.bin"   
+        }
+        
+
