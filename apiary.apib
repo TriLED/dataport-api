@@ -290,6 +290,80 @@ Get details about a specific node & upgrade its firmware. A node is a group of L
             "id": "00-01-02-03-04-05",
             "firmware": "firmware_v1.1.bin",
             "objects": [
+                {
+                    "name": "Channel 1",
+                    "variables": [
+                        {
+                            "type": "nvi",
+                            "name": "nviName",
+                            "value: "value"
+                        },
+                        {
+                            "type": "nci",
+                            "name": "nciName",
+                            "value": "nciValue"
+                        },
+                        {
+                            "type": "nvo",
+                            "name": "nvoName",
+                            "value": "nvoValue"
+                        }
+                    ]
+                    "configurations": [
+                        {
+                            "type": "nvo",
+                            "name": "nvoTemp",
+                            "format": "2,1,0,-274,-20,120,°C"
+                        },
+                        {
+                            "type": "nvo",
+                            "name": "nvoVolt",
+                            "format": "2,1,-2,0,0,10,V"
+                        },
+                        {
+                            "type": "nvi",
+                            "name": "nviValue",
+                            "format": "2,1,0,0,0,100,%"
+                        },
+                        {
+                            "type": "nci",
+                            "name": "nciDimTime",
+                            "format": "2,1,0,0,0,100,s"
+                        }
+                    ]
+                },
+                {
+                    "name": "Channel 2",
+                    "variables": [
+                        {
+                            "type": "nvi",
+                            "name": "nviName",
+                            "value: "value"
+                        },
+                        {
+                            "type": "nci",
+                            "name": "nciName",
+                            "value": "nciValue"
+                        },
+                        {
+                            "type": "nvo",
+                            "name": "nvoName",
+                            "value": "nvoValue"
+                        }
+                    ],
+                    "configurations" : [
+                        {
+                            "type": "nvo",
+                            "name": "nvoTemp",
+                            "format": "2,1,0,-274,-20,120,°C"
+                        },
+                        {
+                            "type": "nvo",
+                            "name": "nvoVolt",
+                            "format": "2,1,0,-274,-20,120,°C"
+                        }
+                    ]
+                }
             ]
         }
         
@@ -300,7 +374,49 @@ Get details about a specific node & upgrade its firmware. A node is a group of L
     
     [Node Details][]
 
+### Update Node [PUT]
+Update the variables (nvi, nvo, nci) of a Node.
 
++ Request (application/json)
+
+        {
+            "objects": [
+                {
+                    "name": "Channel 1",
+                    "variables": [
+                        {
+                            "type": "nvi",
+                            "name": "nviName",
+                            "value: "value1"
+                        },
+                        {
+                            "type": "nci",
+                            "name": "nciName",
+                            "value": "nciValue2"
+                        }
+                    ]
+                },
+                {
+                    "name": "Channel 2",
+                    "variables": [
+                        {
+                            "type": "nvi",
+                            "name": "nviName",
+                            "value: "value1"
+                        },
+                        {
+                            "type": "nci",
+                            "name": "nciName",
+                            "value": "nciValue2"
+                        }
+                    ]
+                }
+            ] 
+        }
+
++ Response 200
+
+    [Node Details][]
     
 # Group Firmwares
 Get an overview of available firmware on the dataport. 
