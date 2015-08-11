@@ -528,6 +528,86 @@ You can change the state of the `power` and the `registration_mode` of an access
             "registration_mode": "on"
         }
 
+# Group DECT Devices
+## Device Details [/v1/dect/accesspoints/{accessPointId}/devices/{deviceId}/]
++ Parameters
+    + accessPointId (required, string, `00-01-02-03-04-05`) ... unique id of an access point
+    + deviceId (required, string, `00-01-02-03-04-05`) ... unique id of the device
+
+### Details [GET]
+
++ Response 200 (application/json)
+
+        {
+            "id": "00-01-02-03-04-05",
+            "registration_mode": "on"
+        }
+
+### Update [PUT]
++ Request ChangeRegistrationModeOn (application/json)
+
+        {
+            "registration_mode": "on"
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "id": "00-01-02-03-04-05",
+            "registration_mode": "on"
+        }
+        
++ Request ChangeRegistrationModeOff (application/json)
+
+        {
+            "registration_mode": "off"
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "id": "00-01-02-03-04-05",
+            "registration_mode": "off"
+        }
+
+## Firmware [/v1/dect/accesspoint/{accessPointId}/devices/{deviceId}/firmware/]
+Put a json body with the firmware filename to the device you want to upgrade.
+This is an asynchronous process, the server responds with a 202 (Accepted) status code 
+which means that it will start upgrade a device.
+If the firmware is not available to server will respond with a 400 status code. 
+You'll have to upload the new firmware first, cfr: `POST /v1/dec/firmwares/`
+
+
+### Details & status [GET]
++ Attributes
+    + status: "installing" (string, required) - when the firmware is being upgraded it has 5 different states
+
++ Response 200 (application/json)
+
+        {
+            "status": "installed",
+            "firmware": "firmware_v1.1.bin"
+        }
+
+### Upgrade [PUT]
++ Request (application/json)
+    
+        {
+            "status": "installing",
+            "firmware": "firmware_v1.1.bin"
+        }
+
++ Response 200 
+
+    [Node Details][]
+    
++ Response 400 (application/json)
+
+        {
+            "error": "firmware_unavailable"
+        }
+
+
 # Group DECT Firmwares
 Get an overview of available firmware on the dataport. 
 By posting a binary to this URI you'll be able to make new firmware available for devices.
@@ -564,46 +644,6 @@ By posting a binary to this URI you'll be able to make new firmware available fo
         {
             "file": "firmware_v1.1.bin"   
         }
-        
 
-## Device Firmware [/v1/dect/accesspoint/{accessPointId}/devices/{deviceId}/firmware/]
-Put a json body with the firmware filename to the device you want to upgrade.
-This is an asynchronous process, the server responds with a 202 (Accepted) status code 
-which means that it will start upgrade a device.
-If the firmware is not available to server will respond with a 400 status code. 
-You'll have to upload the new firmware first, cfr: `POST /v1/dec/firmwares/`
-
-+ Parameters
-    + accessPointId (required, string, `00-01-02-03-04-05`) ... unique id of an access point
-    + deviceId (required, string, `00-01-02-03-04-05`) ... unique id of the device
-
-### Details & status [GET]
-+ Attributes
-    + status: "installing" (string, required) - when the firmware is being upgraded it has 5 different states
-
-+ Response 200 (application/json)
-
-        {
-            "status": "installed",
-            "firmware": "firmware_v1.1.bin"
-        }
-
-### Upgrade [PUT]
-+ Request (application/json)
-    
-        {
-            "status": "installing",
-            "firmware": "firmware_v1.1.bin"
-        }
-
-+ Response 200 
-
-    [Node Details][]
-    
-+ Response 400 (application/json)
-
-        {
-            "error": "firmware_unavailable"
-        }
 
 
