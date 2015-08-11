@@ -233,6 +233,8 @@ A single access point object with all its details.
 
     [Access Point Details][]
     
+
+    
 ### Change states [PUT]
 You can change the state of the `power` and the `registration_mode` of an access point. 
 
@@ -370,6 +372,11 @@ Get details about a specific node & upgrade its firmware. A node is a group of L
 ### Node Details [GET]
 Get details about a specific node & upgrade its firmware. A node is a group of LED lights.
 
++ Attributes
+    + id: "00-01-02-03-04-05" (string, required) ... unique id of a node
+    + firmware: "firmware_v1.0.bin" (string, required) ... the firmware installed on the node
+    + objects (array) - list of available objects on the access point
+
 + Response 200 
     
     [Node Details][]
@@ -469,7 +476,7 @@ You'll have to upload the new firmware first, cfr: `POST /v1/dec/firmwares/`
 
 ### Firmware Details & status [GET]
 + Attributes
-    + status: "installind" (string, required) - when the firmware is being upgraded it has 5 different states
+    + status: "installing" (string, required) - when the firmware is being upgraded it has 5 different states
 
 + Response 200 (application/json)
 
