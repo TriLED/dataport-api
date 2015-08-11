@@ -427,7 +427,7 @@ Update the variables (nvi, nvo, nci) of a Node.
     [Node Details][]
     
 # Group DECT Access Points
-Get details about dect access points, their power & registration mode state. It's possible to change these states.
+Get details about dect access points, their `power` & `registration_mode` state. It's possible to change these states.
 
 ## Access Points List [/v1/dect/accesspoints/]
 + Model (application/json)
@@ -437,18 +437,18 @@ Get details about dect access points, their power & registration mode state. It'
             "results": [
                 {
                     "id": "00-01-02-03-04-05",
-                    "state_power": "on",
-                    "state_registration_mode": "off",
+                    "power": "on",
+                    "registration_mode": "off",
                 },
                 {
                     "id": "00-01-02-03-04-06",
-                    "state_power": "on",
-                    "state_registration_mode": "on",
+                    "power": "on",
+                    "registration_mode": "on",
                 },
                 {
                     "id": "00-01-02-03-04-07",
-                    "state_power": "off",
-                    "state_registration_mode": "off",
+                    "power": "off",
+                    "registration_mode": "off",
                 }
             ]
         }
@@ -456,8 +456,8 @@ Get details about dect access points, their power & registration mode state. It'
 ### Overview [GET]
 + Attributes
     + id: "00-01-02-03-04-05" (string, required) - unique id of the access point
-    + state_power: on (string, required) - state of the power, on/off
-    + state_registration_mode: off (string, required) - is the unit in registration mode or not
+    + power: on (string, required) - state of the power, on/off
+    + registration_mode: off (string, required) - is the unit in registration mode or not
 
 + Response 200
 
@@ -467,10 +467,10 @@ Get details about dect access points, their power & registration mode state. It'
 + Request (application/json)
 
         [
-            {"id": "00-01-02-03-04-05", "state_power": "off"},
-            {"id": "00-01-02-03-04-06", "state_registration_mode": "off"},
-            {"id": "00-01-02-03-04-07", "state_registration_mode": "on"},
-            {"id": "00-01-02-03-04-08", "state_power": "on"}
+            {"id": "00-01-02-03-04-05", "power": "off"},
+            {"id": "00-01-02-03-04-06", "registration_mode": "off"},
+            {"id": "00-01-02-03-04-07", "registration_mode": "on"},
+            {"id": "00-01-02-03-04-08", "power": "on"}
         ]
         
 + Response 200
@@ -486,15 +486,15 @@ A single access point object with all its details.
 ### Details [GET]
 + Attributes
     + id: "00-01-02-03-04-05" (string, required) - unique id of the access point
-    + state_power: on (string, required) - state of the power, on/off
-    + state_registration_mode: off (string, required) - is the unit in registration mode or not
+    + power: on (string, required) - state of the power, on/off
+    + registration_mode: off (string, required) - is the unit in registration mode or not
 
 + Response 200
 
         {
             "id": "00-01-02-03-04-05",
-            "state_power": "on",
-            "state_registration_mode": "off"
+            "power": "on",
+            "registration_mode": "off"
         }
 
 ### Update [PUT]
@@ -503,17 +503,30 @@ You can change the state of the `power` and the `registration_mode` of an access
 + Request ChangeRegistrationMode (application/json)
 
         {
-            "state_registration_mode": "on"
+            "registration_mode": "on"
         }
         
 + Response 200 (application/json)
 
         {
             "id": "00-01-02-03-04-05",
-            "state_power": "on",
-            "state_registration_mode": "on"
+            "power": "on",
+            "registration_mode": "on"
+        }
+        
++ Request ChangePower (application/json)
+
+        {
+            "power": "off",
         }
 
++ Response 200 (application/json)
+        
+        {
+            "id": "00-01-02-03-04-05",
+            "power": "off",
+            "registration_mode": "on"
+        }
 
 # Group DECT Firmwares
 Get an overview of available firmware on the dataport. 
