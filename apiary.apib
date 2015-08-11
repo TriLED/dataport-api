@@ -30,7 +30,7 @@ Requirements:
 
 # Group Access Points
     
-## List Access Points [/v1/network/accesspoints/]
+## Access Points List [/v1/network/accesspoints/]
 Returns a list of access points.
 
 ### Overview [GET]
@@ -227,31 +227,51 @@ A single access point object with all its details.
     + id: "00-01-02-03-04-05" (string, required) - unique id of the access point
     + state_power: on (string, required) - state of the power, on/off
     + state_registration_mode: off (string, required) - is the unit in registration mode or not
-    + objects (array) - list of available objects on the access point
+    + objects (array, required) - list of available objects on the access point
         
 + Response 200
 
     [Access Point Details][]
     
+### Update Access Point [PUT]
+Update the variables (nvi, nvo, nci) of an access point. Only list the variables that you want to update. 
+The server will only touch variables that are listed in the put request.
 
-    
-### Change states [PUT]
-You can change the state of the `power` and the `registration_mode` of an access point. 
-
-+ Request ChangeStatePower (application/json)
-
-        {
-            "state_power": "off"
-        }
-        
-+ Response 200
-
-    [Access Point Details][]
-
-+ Request ChangeStateRegistrationMode (application/json)
++ Request (application/json)
 
         {
-            "state_registration_mode": "on"
+            "objects": [
+                {
+                    "name": "Config",
+                    "variables": [
+                        {
+                            "type": "nci",
+                            "name": "Mac",
+                            "value": "00-01-02-03-04-07"
+                        }
+                    ]
+                },
+                {
+                    "name": "EnergyMeter",
+                    "variables": [
+                        {
+                            "type": "nvi",
+                            "name": "Calibrate",
+                            "value": "test"
+                        }
+                    ]
+                },
+                {
+                    "name": "Power",
+                    "variables": [
+                        {
+                          "type": "nvi",
+                          "name": "Output",
+                          "value": false
+                        }
+                    ]
+                }
+            ]
         }
         
 + Response 200
@@ -375,7 +395,7 @@ Get details about a specific node & upgrade its firmware. A node is a group of L
 + Attributes
     + id: "00-01-02-03-04-05" (string, required) ... unique id of a node
     + firmware: "firmware_v1.0.bin" (string, required) ... the firmware installed on the node
-    + objects (array) - list of available objects on the access point
+    + objects (array, required) - list of available objects on the access point
 
 + Response 200 
     
@@ -502,11 +522,5 @@ You'll have to upload the new firmware first, cfr: `POST /v1/dec/firmwares/`
         {
             "error": "firmware_unavailable"
         }
-
-
-
-
-
-
 
 
