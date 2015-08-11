@@ -227,8 +227,15 @@ which means that it will start upgrade a device.
 If the firmware is not available to server will respond with a 400 status code. 
 You'll have to upload the new firmware first, cfr: `POST /v1/dec/firmwares/`
 
++ Parameters
+    + accessPointId (required, string, `00-01-02-03-04-05`) ... unique id of an access point
+    + deviceId (required, string, `00-01-02-03-04-05`) ... unique id of the device
+
 ### Firmware Details & status [GET]
-+ Response
++ Attributes
+    + status: "installind" (string, required) - when the firmware is being upgraded it has 5 different states
+
++ Response 200 (application/json)
 
         {
             "status": "installed",
