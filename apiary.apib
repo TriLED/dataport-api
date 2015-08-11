@@ -3,7 +3,9 @@ HOST: http://dataport.triled.be/
 
 # TriLED dataport
 
-API Definition of the TriLED dataport. The API adherse 
+API Definition of the TriLED dataport. The API adherse the RESTful principles. There 2 main components covered by this API:
+* DECT: mainly used execute commando's on access points & devices
+* SMALI: mainly used to check state of the network & set variables
 
 Requirements:
 * have an overview of what's available on a dataport (config, access points, nodes, etc.)
@@ -217,4 +219,44 @@ By posting a binary to this URI you'll be able to make new firmware available fo
             "file": "firmware_v1.1.bin"   
         }
         
+
+## Device Firmware [/v1/dect/accesspoint/{accessPointId}/devices/{deviceId}/firmware/]
+Put a json body with the firmware filename to the device you want to upgrade.
+This is an asynchronous process, the server responds with a 202 (Accepted) status code 
+which means that it will start upgrade a device.
+If the firmware is not available to server will respond with a 400 status code. 
+You'll have to upload the new firmware first, cfr: `POST /v1/dec/firmwares/`
+
+### Firmware Details & status [GET]
++ Response
+
+        {
+            "status": "installed",
+            "firmware": "firmware_v1.1.bin"
+        }
+
+### Upgrade Firmware [PUT]
++ Request (application/json)
+    
+        {
+            "status": "installing",
+            "firmware": "firmware_v1.1.bin"
+        }
+
++ Response 200 
+
+    [Node Details][]
+    
++ Response 400 (application/json)
+
+        {
+            "error": "firmware_unavailable"
+        }
+
+
+
+
+
+
+
 
