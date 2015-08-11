@@ -30,7 +30,7 @@ Requirements:
 
 # Group Access Points
     
-## List Power Supplies [/v1/accesspoints/]
+## List Access Points [/v1/network/accesspoints/]
 Returns a list of access points.
 
 ### Overview [GET]
@@ -44,26 +44,102 @@ Returns a list of access points.
                     "id": "00-01-02-03-04-05",
                     "state_power": "on",
                     "state_registration_mode": "off",
-                    "config": {
-                        "foo": "bar"    
-                    },
-                    "energy_meter": {
-                        "calibrate": ""
-                    }
-                    "power": {
-                        "output": true,
-                        "voltage": "101",
-                        "current": "2"
-                    }
+                    "objects": [
+                        {
+                            "name": "Config",
+                            "variables": [
+                                {
+                                  "type": "nci",
+                                  "name": "Mac",
+                                  "value": "00-01-02-03-04-05"
+                                }
+                            ],
+                            "configurations": [
+                                {
+                                  "type": "nci",
+                                  "name": "Mac",
+                                  "format": ""
+                                }
+                            ]
+                        },
+                        {
+                            "name": "EnergyMeter",
+                            "variables": [
+                                {
+                                  "type": "nvi",
+                                  "name": "Calibrate",
+                                  "value": ""
+                                }
+                            ],
+                            "configurations": [
+                                {
+                                  "type": "nvi",
+                                  "name": "Calibrate",
+                                  "format": ""
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Power",
+                            "variables": [
+                                {
+                                  "type": "nvi",
+                                  "name": "Output",
+                                  "value": true
+                                },
+                                {
+                                  "type": "nvo",
+                                  "name": "Voltage",
+                                  "value": "210"
+                                },
+                                {
+                                  "type": "nvo",
+                                  "name": "Current",
+                                  "value": "5"
+                                }
+                              ],
+                              "configurations": [
+                                {
+                                  "type": "nvi",
+                                  "name": "Output",
+                                  "format": ""
+                                },
+                                {
+                                  "type": "nvo",
+                                  "name": "Voltage",
+                                  "format": "2,1,-2,0,0,10,V"
+                                },
+                                {
+                                  "type": "nvo",
+                                  "name": "Current",
+                                  "format": "2,1,-2,0,0,10,V"
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         }
 
-## Access Point Details [/v1/accesspoints/{id}/]
+### Bulk update [POST]
++ Request (application/json)
+
+        [
+            {"id": "00-01-02-03-04-05", "state_power": "off"},
+            {"id": "00-01-02-03-04-06", "state_registration_mode": "off"},
+            {"id": "00-01-02-03-04-07", "state_registration_mode": "on"},
+            {"id": "00-01-02-03-04-08", "state_power": "on"}
+        ]
+        
++ Response 200 (application/json)
+
+        {}
+
+## Access Point Details [/v1/network/accesspoints/{accessPointId}/]
 A single access point object with all its details.
 
 + Parameters
-    + id (required, string, `00-01-02-03-04-05`) ... unique id of a access point
+    + accessPointId (required, string, `00-01-02-03-04-05`) ... unique id of a access point
 
 + Model (application/json)
 
@@ -71,17 +147,79 @@ A single access point object with all its details.
             "id": "00-01-02-03-04-05",
             "state_power": "on",
             "state_registration_mode": "off",
-            "config": {
-                "foo": "bar"    
-            },
-            "energy_meter": {
-                "calibrate": ""
-            }
-            "power": {
-                "output": true,
-                "voltage": "101",
-                "current": "2"
-            }
+            "objects": [
+                {
+                    "name": "Config",
+                    "variables": [
+                        {
+                            "type": "nci",
+                            "name": "Mac",
+                            "value": "00-01-02-03-04-05"
+                        }
+                    ],
+                    "configurations": [
+                        {
+                            "type": "nci",
+                            "name": "Mac",
+                            "format": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "EnergyMeter",
+                    "variables": [
+                        {
+                            "type": "nvi",
+                            "name": "Calibrate",
+                            "value": ""
+                        }
+                    ],
+                    "configurations": [
+                        {
+                            "type": "nvi",
+                            "name": "Calibrate",
+                            "format": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Power",
+                    "variables": [
+                    {
+                      "type": "nvi",
+                      "name": "Output",
+                      "value": true
+                    },
+                    {
+                      "type": "nvo",
+                      "name": "Voltage",
+                      "value": "210"
+                    },
+                    {
+                      "type": "nvo",
+                      "name": "Current",
+                      "value": "5"
+                    }
+                    ],
+                    "configurations": [
+                    {
+                      "type": "nvi",
+                      "name": "Output",
+                      "format": ""
+                    },
+                    {
+                      "type": "nvo",
+                      "name": "Voltage",
+                      "format": "2,1,-2,0,0,10,V"
+                    },
+                    {
+                      "type": "nvo",
+                      "name": "Current",
+                      "format": "2,1,-2,0,0,10,V"
+                    }
+                    ]
+                }
+            ]
         }
 
 ### Access point Details [GET]
@@ -121,7 +259,7 @@ You can change the state of the `power` and the `registration_mode` of an access
     [Access Point Details][]
 
 # Group Nodes
-## List Nodes [/v1/accesspoints/{accessPointId}/nodes/]
+## List Nodes [/v1/network/accesspoints/{accessPointId}/nodes/]
 ### Overview [GET]
 + Response 200
 
@@ -139,7 +277,7 @@ You can change the state of the `power` and the `registration_mode` of an access
             ]
         }
 
-## Node Details [/v1/accesspoints/{accessPointId}/nodes/{nodeId}/]
+## Node Details [/v1/network/accesspoints/{accessPointId}/nodes/{nodeId}/]
 Get details about a specific node & upgrade its firmware. A node is a group of LED lights.
 
 + Parameters
@@ -160,31 +298,11 @@ Get details about a specific node & upgrade its firmware. A node is a group of L
     
     [Node Details][]
 
-### Upgrade firmware [PUT]
-Put a json body with the firmware filename to you want on the node. 
-The server responds with a 200 status code if the firmware was succesfully upgraded.
-If the firmware is not available to server will respond with a 400 status code. 
-You'll have to upload the new firmware first, cfr: `POST /v1/firmwares/`
 
-+ Request (application/json)
-    
-        {
-            "firmware": "firmware_v1.1.bin"
-        }
-
-+ Response 200 
-
-    [Node Details][]
-    
-+ Response 400 (application/json)
-
-        {
-            "error": "firmware_unavailable"
-        }
     
 # Group Firmwares
 Get an overview of available firmware on the dataport. 
-By posting a binary to this URI you'll be able to make new firmware available for nodes.
+By posting a binary to this URI you'll be able to make new firmware available for devices.
 
 ## List Firmwares [/v1/dect/firmwares/]
 ### Overview [GET]
