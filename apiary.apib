@@ -205,7 +205,7 @@ A single access point object with all its details.
             ]
         }
 
-### Access point Details [GET]
+### Details [GET]
 + Attributes
     + id: "00-01-02-03-04-05" (string, required) - unique id of the access point
     + objects (array, required) - list of available objects on the access point
@@ -214,7 +214,7 @@ A single access point object with all its details.
 
     [Access Point Details][]
     
-### Update Access Point [PUT]
+### Update [PUT]
 Update the variables (nvi, nvo, nci) of an access point. Only list the variables that you want to update. 
 The server will only touch variables that are listed in the put request.
 
@@ -370,7 +370,7 @@ Get details about a specific node & upgrade its firmware. A node is a group of L
             ]
         }
         
-### Node Details [GET]
+### Details [GET]
 Get details about a specific node & upgrade its firmware. A node is a group of LED lights.
 
 + Attributes
@@ -382,7 +382,7 @@ Get details about a specific node & upgrade its firmware. A node is a group of L
     
     [Node Details][]
 
-### Update Node [PUT]
+### Update [PUT]
 Update the variables (nvi, nvo, nci) of a Node.
 
 + Request (application/json)
@@ -477,6 +477,43 @@ Get details about dect access points, their power & registration mode state. It'
 
     [Access Points List][]     
 
+## Access Point Details [/v1/dect/accesspoints/{accessPointId}/]
+A single access point object with all its details.
+
++ Parameters
+    + accessPointId (required, string, `00-01-02-03-04-05`) ... unique id of a access point
+
+### Details [GET]
++ Attributes
+    + id: "00-01-02-03-04-05" (string, required) - unique id of the access point
+    + state_power: on (string, required) - state of the power, on/off
+    + state_registration_mode: off (string, required) - is the unit in registration mode or not
+
++ Response 200
+
+        {
+            "id": "00-01-02-03-04-05",
+            "state_power": "on",
+            "state_registration_mode": "off"
+        }
+
+### Update [PUT]
+You can change the state of the `power` and the `registration_mode` of an access point. 
+
++ Request ChangeRegistrationMode (application/json)
+
+        {
+            "state_registration_mode": "on"
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "id": "00-01-02-03-04-05",
+            "state_power": "on",
+            "state_registration_mode": "on"
+        }
+
 
 # Group DECT Firmwares
 Get an overview of available firmware on the dataport. 
@@ -527,7 +564,7 @@ You'll have to upload the new firmware first, cfr: `POST /v1/dec/firmwares/`
     + accessPointId (required, string, `00-01-02-03-04-05`) ... unique id of an access point
     + deviceId (required, string, `00-01-02-03-04-05`) ... unique id of the device
 
-### Firmware Details & status [GET]
+### Details & status [GET]
 + Attributes
     + status: "installing" (string, required) - when the firmware is being upgraded it has 5 different states
 
@@ -538,7 +575,7 @@ You'll have to upload the new firmware first, cfr: `POST /v1/dec/firmwares/`
             "firmware": "firmware_v1.1.bin"
         }
 
-### Upgrade Firmware [PUT]
+### Upgrade [PUT]
 + Request (application/json)
     
         {
