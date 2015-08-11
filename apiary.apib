@@ -227,9 +227,7 @@ A single access point object with all its details.
     + id: "00-01-02-03-04-05" (string, required) - unique id of the access point
     + state_power: on (string, required) - state of the power, on/off
     + state_registration_mode: off (string, required) - is the unit in registration mode or not
-    + config (object, required) - Info about the unit configuration
-    + energy_meter (object, required) - Stats about the energy meter
-    + power (object, required) - Stats about the power state
+    + objects (array) - list of available objects on the access point
         
 + Response 200
 
@@ -268,11 +266,13 @@ You can change the state of the `power` and the `registration_mode` of an access
             "results": [
                 {
                     "id": "00-01-02-03-04-05",
-                    "firmware": "firmware_v1.1.bin",
-                    "objects": [
-                    ]
+                    "firmware": "firmware_v1.0.bin",
+                    "objects": []
                 },
                 {
+                    "id": "00-01-02-03-04-06",
+                    "firmware": "firmware_v1.1.bin",
+                    "objects": []
                 }
             ]
         }
@@ -294,6 +294,8 @@ Get details about a specific node & upgrade its firmware. A node is a group of L
         }
         
 ### Node Details [GET]
+Get details about a specific node & upgrade its firmware. A node is a group of LED lights.
+
 + Response 200 
     
     [Node Details][]
