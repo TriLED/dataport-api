@@ -42,8 +42,6 @@ Returns a list of access points.
             "results": [
                 {
                     "id": "00-01-02-03-04-05",
-                    "state_power": "on",
-                    "state_registration_mode": "off",
                     "objects": [
                         {
                             "name": "Config",
@@ -120,20 +118,7 @@ Returns a list of access points.
                 }
             ]
         }
-
-### Bulk update [POST]
-+ Request (application/json)
-
-        [
-            {"id": "00-01-02-03-04-05", "state_power": "off"},
-            {"id": "00-01-02-03-04-06", "state_registration_mode": "off"},
-            {"id": "00-01-02-03-04-07", "state_registration_mode": "on"},
-            {"id": "00-01-02-03-04-08", "state_power": "on"}
-        ]
         
-+ Response 200 (application/json)
-
-        {}
 
 ## Access Point Details [/v1/network/accesspoints/{accessPointId}/]
 A single access point object with all its details.
@@ -145,8 +130,6 @@ A single access point object with all its details.
 
         {
             "id": "00-01-02-03-04-05",
-            "state_power": "on",
-            "state_registration_mode": "off",
             "objects": [
                 {
                     "name": "Config",
@@ -225,8 +208,6 @@ A single access point object with all its details.
 ### Access point Details [GET]
 + Attributes
     + id: "00-01-02-03-04-05" (string, required) - unique id of the access point
-    + state_power: on (string, required) - state of the power, on/off
-    + state_registration_mode: off (string, required) - is the unit in registration mode or not
     + objects (array, required) - list of available objects on the access point
         
 + Response 200
@@ -279,7 +260,7 @@ The server will only touch variables that are listed in the put request.
     [Access Point Details][]
 
 # Group SMALI Nodes
-## List Nodes [/v1/network/accesspoints/{accessPointId}/nodes/]
+## Nodes List [/v1/network/accesspoints/{accessPointId}/nodes/]
 ### Overview [GET]
 + Response 200
 
@@ -445,11 +426,63 @@ Update the variables (nvi, nvo, nci) of a Node.
 
     [Node Details][]
     
+# Group DECT Access Points
+Get details about dect access points, their power & registration mode state. It's possible to change these states.
+
+## Access Points List [/v1/dect/accesspoints/]
++ Model (application/json)
+
+        {
+            "count": 3,
+            "results": [
+                {
+                    "id": "00-01-02-03-04-05",
+                    "state_power": "on",
+                    "state_registration_mode": "off",
+                },
+                {
+                    "id": "00-01-02-03-04-06",
+                    "state_power": "on",
+                    "state_registration_mode": "on",
+                },
+                {
+                    "id": "00-01-02-03-04-07",
+                    "state_power": "off",
+                    "state_registration_mode": "off",
+                }
+            ]
+        }
+
+### Overview [GET]
++ Attributes
+    + id: "00-01-02-03-04-05" (string, required) - unique id of the access point
+    + state_power: on (string, required) - state of the power, on/off
+    + state_registration_mode: off (string, required) - is the unit in registration mode or not
+
++ Response 200
+
+    [Access Points List][]
+    
+### Bulk update [POST]
++ Request (application/json)
+
+        [
+            {"id": "00-01-02-03-04-05", "state_power": "off"},
+            {"id": "00-01-02-03-04-06", "state_registration_mode": "off"},
+            {"id": "00-01-02-03-04-07", "state_registration_mode": "on"},
+            {"id": "00-01-02-03-04-08", "state_power": "on"}
+        ]
+        
++ Response 200
+
+    [Access Points List][]     
+
+
 # Group DECT Firmwares
 Get an overview of available firmware on the dataport. 
 By posting a binary to this URI you'll be able to make new firmware available for devices.
 
-## List Firmwares [/v1/dect/firmwares/]
+## Firmwares List [/v1/dect/firmwares/]
 ### Overview [GET]
 + Response 200 (application/json)
 
