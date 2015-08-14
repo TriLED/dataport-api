@@ -301,6 +301,28 @@ The server will only touch variables that are listed in the put request.
             ]
         }
 
+### Update [PUT]
+Update the variables (nvi, nvo, nci) of a Node.
+
++ Request (application/json)
+
+        {
+            "updates": [
+                {
+                    "path": "00-01-02-03-04-05/Channel 1/nviName",
+                    "value": "val1"
+                },
+                {
+                    "path": "00-01-02-03-04-05/Channel 1/nciValue2"
+                    "value": "val2"
+                }
+            ] 
+        }
+
++ Response 200
+
+    [Node Details][]
+
 ## Node Details [/v1/network/nodes/{nodeId}/]
 Get details about a specific node. A node is a group of LED lights.
 
