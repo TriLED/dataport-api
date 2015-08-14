@@ -406,36 +406,14 @@ Update the variables (nvi, nvo, nci) of a Node.
 + Request (application/json)
 
         {
-            "objects": [
+            "updates": [
                 {
-                    "name": "Channel 1",
-                    "variables": [
-                        {
-                            "type": "nvi",
-                            "name": "nviName",
-                            "value: "value1"
-                        },
-                        {
-                            "type": "nci",
-                            "name": "nciName",
-                            "value": "nciValue2"
-                        }
-                    ]
+                    "path": "Channel 1/nviName",
+                    "value": "val1"
                 },
                 {
-                    "name": "Channel 2",
-                    "variables": [
-                        {
-                            "type": "nvi",
-                            "name": "nviName",
-                            "value: "value1"
-                        },
-                        {
-                            "type": "nci",
-                            "name": "nciName",
-                            "value": "nciValue2"
-                        }
-                    ]
+                    "path": "Channel 1/nciValue2"
+                    "value": "val2"
                 }
             ] 
         }
