@@ -163,9 +163,20 @@ Update the variables (nvi, nvo, nci) of a Node.
             ] 
         }
 
-+ Response 200
++ Response 200 (application/json)
 
-    [Node Details][]
+        {
+            "updates": [
+                {
+                    "path": "00-01-02-03-04-05/Channel 1/nviName",
+                    "status_code": "ok"
+                },
+                {
+                    "path": "00-01-02-03-04-05/Channel 1/nciValue2"
+                    "status_code": "offline"
+                }  
+            ]
+        }
 
 ## Node Details [/v1/network/nodes/{nodeId}/]
 Get details about a specific node. A node is a group of LED lights.
