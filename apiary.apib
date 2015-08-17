@@ -30,20 +30,21 @@ There 2 main components covered by this API:
             "msg": "Hello World"
         }
 
-# Group SMALI Access Points
-    
-## Access Points List [/v1/network/accesspoints/]
-Returns a list of access points.
 
+# Group SMALI Nodes
+## Nodes List [/v1/network/nodes/]
 ### Overview [GET]
+Get Node list.
 
-+ Response 200 (application/json)
++ Response 200
 
         {
-            "count": 1,
+            "count": 2,
             "results": [
                 {
                     "id": "00-01-02-03-04-05",
+                    "type": "power_supply",
+                    "device_type": "ip",
                     "objects": [
                         {
                             "name": "Config",
@@ -117,187 +118,25 @@ Returns a list of access points.
                             ]
                         }
                     ]
-                }
-            ]
-        }
-        
-
-## Access Point Details [/v1/network/accesspoints/{accessPointId}/]
-A single access point object with all its details.
-
-+ Parameters
-    + accessPointId (required, string, `00-01-02-03-04-05`) ... unique id of a access point
-
-+ Model (application/json)
-
-        {
-            "id": "00-01-02-03-04-05",
-            "objects": [
-                {
-                    "name": "Config",
-                    "variables": [
-                        {
-                            "type": "nci",
-                            "name": "Mac",
-                            "value": "00-01-02-03-04-05"
-                        }
-                    ],
-                    "configurations": [
-                        {
-                            "type": "nci",
-                            "name": "Mac",
-                            "format": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "EnergyMeter",
-                    "variables": [
-                        {
-                            "type": "nvi",
-                            "name": "Calibrate",
-                            "value": ""
-                        }
-                    ],
-                    "configurations": [
-                        {
-                            "type": "nvi",
-                            "name": "Calibrate",
-                            "format": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "Power",
-                    "variables": [
-                        {
-                          "type": "nvi",
-                          "name": "Output",
-                          "value": true
-                        },
-                        {
-                          "type": "nvo",
-                          "name": "Voltage",
-                          "value": "210"
-                        },
-                        {
-                          "type": "nvo",
-                          "name": "Current",
-                          "value": "5"
-                        }
-                    ],
-                    "configurations": [
-                        {
-                          "type": "nvi",
-                          "name": "Output",
-                          "format": ""
-                        },
-                        {
-                          "type": "nvo",
-                          "name": "Voltage",
-                          "format": "2,1,-2,0,0,10,V"
-                        },
-                        {
-                          "type": "nvo",
-                          "name": "Current",
-                          "format": "2,1,-2,0,0,10,V"
-                        }
-                    ]
-                }
-            ]
-        }
-
-### Details [GET]
-+ Attributes
-    + id: "00-01-02-03-04-05" (string, required) - unique id of the access point
-    + objects (array, required) - list of available objects on the access point
-        
-+ Response 200
-
-    [Access Point Details][]
-    
-### Update [PUT]
-Update the variables (nvi, nvo, nci) of an access point. Only list the variables that you want to update. 
-The server will only touch variables that are listed in the put request.
-
-+ Request (application/json)
-
-        {
-            "objects": [
-                {
-                    "name": "Config",
-                    "variables": [
-                        {
-                            "type": "nci",
-                            "name": "Mac",
-                            "value": "00-01-02-03-04-07"
-                        }
-                    ]
-                },
-                {
-                    "name": "EnergyMeter",
-                    "variables": [
-                        {
-                            "type": "nvi",
-                            "name": "Calibrate",
-                            "value": "test"
-                        }
-                    ]
-                },
-                {
-                    "name": "Power",
-                    "variables": [
-                        {
-                          "type": "nvi",
-                          "name": "Output",
-                          "value": false
-                        }
-                    ]
-                }
-            ]
-        }
-        
-+ Response 200
-
-    [Access Point Details][]
-
-# Group SMALI Nodes
-## Nodes List [/v1/network/nodes]
-### Overview [GET]
-Get Node list.
-
-+ Response 200
-
-        {
-            "count": 2,
-            "results": [
-                {
-                    "id": "00-01-02-03-04-05",
-                    "type": "Power Supply",
-                    "device type": "ip",
-                    "objects": [
-                        {
-                            "name": "Channel 1",
-                            "variables": [],
-                            "configurations": []
-                        },
-                        {
-                            "name": "Channel 2",
-                            "variables": [],
-                            "configurations": []
-                        }
-                    ]
                 },
                 {
                     "id": "00-01-02-03-04-06",
-                    "type": "DualLine",
-                    "device type": "dect",
+                    "type": "dualline",
+                    "device_type": "dect",
                     "objects": [
                         {
                             "name": "Channel 1",
                             "variables": [],
                             "configurations": []
                         }
+                    ]
+                },
+                {
+                    "id": "05-04-03-02-01-00",
+                    "type": "access_point",
+                    "device_type": "dect",
+                    "objects": [
+                    
                     ]
                 }
             ]
@@ -335,6 +174,8 @@ Get details about a specific node. A node is a group of LED lights.
 
         {
             "id": "00-01-02-03-04-05",
+            "type": "dualline",
+            "device_type": "dect",
             "objects": [
                 {
                     "name": "Channel 1",
