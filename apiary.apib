@@ -45,6 +45,7 @@ Get Node list.
                     "id": "00-01-02-03-04-05",
                     "type": "power_supply",
                     "device_type": "ip",
+                    "name": "AC 10.0.0.1",
                     "objects": [
                         {
                             "name": "Config",
@@ -123,6 +124,7 @@ Get Node list.
                     "id": "00-01-02-03-04-06",
                     "type": "dualline",
                     "device_type": "dect",
+                    "name": "Dual Line 2",
                     "objects": [
                         {
                             "name": "Channel 1",
@@ -133,8 +135,9 @@ Get Node list.
                 },
                 {
                     "id": "05-04-03-02-01-00",
-                    "type": "termos",
+                    "type": "temperature_sensor",
                     "device_type": "dect",
+                    "name": "Temperature Sensor 1",
                     "objects": [
                     
                     ]
@@ -176,6 +179,7 @@ Get details about a specific node. A node is a group of LED lights.
             "id": "00-01-02-03-04-05",
             "type": "dualline",
             "device_type": "dect",
+            "name": "AC 10.0.0.1",
             "objects": [
                 {
                     "name": "Channel 1",
@@ -259,6 +263,9 @@ Get details about a specific node. A node is a group of LED lights.
 
 + Attributes
     + id: "00-01-02-03-04-05" (string, required) ... unique id of a node
+    + type: "power_supply" (string, required) ... type of the node, can be anything
+    + device_type: "ip" (string, required) ... type of the device: ip or dect
+    + name: "AC 10.0.0.1" (string, required) ... human readable name for the node
     + objects (array, required) - list of available objects on the access point
 
 + Response 200 
