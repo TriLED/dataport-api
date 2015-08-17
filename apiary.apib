@@ -146,7 +146,11 @@ Get Node list.
         }
 
 ### Update [PUT]
-Update the variables (nvi, nvo, nci) of a Node.
+Update the variables (nvi, nvo, nci) of a Nodes. It accepts a list of a paths to a 
+variable and their new value. The response returns the same list but with a `status_code`
+field. Still to be defined which statussen we'll have.
+
+Path construction: <nodeId>/<objectName>/<variableName>
 
 + Request (application/json)
 
@@ -358,10 +362,8 @@ Get details about dect access points, their `power` & `registration_mode` state.
 + Request (application/json)
 
         [
-            {"id": "00-01-02-03-04-05", "power": "off"},
             {"id": "00-01-02-03-04-06", "registration_mode": "off"},
             {"id": "00-01-02-03-04-07", "registration_mode": "on"},
-            {"id": "00-01-02-03-04-08", "power": "on"}
         ]
         
 + Response 200
