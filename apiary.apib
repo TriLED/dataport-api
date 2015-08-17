@@ -122,6 +122,85 @@ Get Node list.
                 },
                 {
                     "id": "00-01-02-03-04-06",
+                    "type": "power_supply",
+                    "device_type": "ip",
+                    "name": "AC 10.0.0.2",
+                    "objects": [
+                        {
+                            "name": "Config",
+                            "variables": [
+                                {
+                                  "type": "nci",
+                                  "name": "Mac",
+                                  "value": "00-01-02-03-04-05"
+                                }
+                            ],
+                            "configurations": [
+                                {
+                                  "type": "nci",
+                                  "name": "Mac",
+                                  "format": ""
+                                }
+                            ]
+                        },
+                        {
+                            "name": "EnergyMeter",
+                            "variables": [
+                                {
+                                  "type": "nvi",
+                                  "name": "Calibrate",
+                                  "value": ""
+                                }
+                            ],
+                            "configurations": [
+                                {
+                                  "type": "nvi",
+                                  "name": "Calibrate",
+                                  "format": ""
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Power",
+                            "variables": [
+                                {
+                                  "type": "nvi",
+                                  "name": "Output",
+                                  "value": false
+                                },
+                                {
+                                  "type": "nvo",
+                                  "name": "Voltage",
+                                  "value": "210"
+                                },
+                                {
+                                  "type": "nvo",
+                                  "name": "Current",
+                                  "value": "5"
+                                }
+                              ],
+                              "configurations": [
+                                {
+                                  "type": "nvi",
+                                  "name": "Output",
+                                  "format": ""
+                                },
+                                {
+                                  "type": "nvo",
+                                  "name": "Voltage",
+                                  "format": "2,1,-2,0,0,10,V"
+                                },
+                                {
+                                  "type": "nvo",
+                                  "name": "Current",
+                                  "format": "2,1,-2,0,0,10,V"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "00-01-02-03-04-06",
                     "type": "dualline",
                     "device_type": "dect",
                     "name": "Dual Line 2",
