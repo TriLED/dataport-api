@@ -298,18 +298,30 @@ Get details about dect access points, their `power` & `registration_mode` state.
             "results": [
                 {
                     "id": "00-01-02-03-04-05",
-                    "power": "on",
                     "registration_mode": "off",
+                    "devices": [
+                        {
+                            "id": "01-01-01-01-01-01",
+                            "rssi": 1434,
+                            "online": true
+                        },
+                        {
+                            "id": "01-01-01-01-01-01",
+                            "rssi": 1434,
+                            "online": false
+                        }
+                        
+                    ]
                 },
                 {
                     "id": "00-01-02-03-04-06",
-                    "power": "on",
                     "registration_mode": "on",
+                    "devices": []
                 },
                 {
                     "id": "00-01-02-03-04-07",
-                    "power": "off",
                     "registration_mode": "off",
+                    "devices": []
                 }
             ]
         }
@@ -317,8 +329,8 @@ Get details about dect access points, their `power` & `registration_mode` state.
 ### Overview [GET]
 + Attributes
     + id: "00-01-02-03-04-05" (string, required) - unique id of the access point
-    + power: on (string, required) - state of the power, on/off
     + registration_mode: off (string, required) - is the unit in registration mode or not
+    + devices (array, required) - list of devices connected to an access point
 
 + Response 200
 
