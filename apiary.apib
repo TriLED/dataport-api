@@ -228,51 +228,64 @@ Get details about a specific node. A node is a group of LED lights.
 + Model (application/json)
 
         {
-            "id": "00-01-02-03-04-05",
-            "type": "dualline",
+            "id": "00-01-02-03-04-06",
+            "node_type": "dualline",
             "device_type": "dect",
-            "name": "AC 10.0.0.1",
+            "name": "Dual Line 2",
+            "objects": [
+                {
+                    "name": "Channel 1",
+                    "nvo": [
+                        {
+                            "name": "nvoName",
+                            "format": "format",
+                            "value": "value"
+                        },
+                        {
+                            "name": "nvoTemp",
+                            "format": "2,1,0,-274,-20,120,°C",
+                            "value": "23"
+                        },
+                        {
+                            "name": "nvoVolt",
+                            "format": "2,1,-2,0,0,10,V",
+                            "value": "230"
+                        }
+                    ],
+                    "nvi": [
+                        {
+                            "name": "nviName",
+                            "format": "2,1,0,0,0,100,%",
+                            "value": "value"
+                        }
+                    ],
+                    "nci": [
+                        {
+                            "name": "nciName",
+                            "format": "format",
+                            "value": "value"
+                        },
+                        {
+                            "name": "nciDimTime",
+                            "format": "2,1,0,0,0,100,s",
+                            "value": "10"
+                        }
+                    ]
+                }
+            ],
             "objects": [
                 {
                     "name": "Channel 1",
                     "variables": [
-                        {
-                            "type": "nvi",
-                            "name": "nviName",
-                            "value: "value"
-                        },
-                        {
-                            "type": "nci",
-                            "name": "nciName",
-                            "value": "nciValue"
-                        },
-                        {
-                            "type": "nvo",
-                            "name": "nvoName",
-                            "value": "nvoValue"
-                        }
+
                     ]
                     "configurations": [
                         {
-                            "type": "nvo",
-                            "name": "nvoTemp",
-                            "format": "2,1,0,-274,-20,120,°C"
-                        },
-                        {
-                            "type": "nvo",
-                            "name": "nvoVolt",
-                            "format": "2,1,-2,0,0,10,V"
-                        },
-                        {
                             "type": "nvi",
                             "name": "nviValue",
-                            "format": "2,1,0,0,0,100,%"
+                            "format": 
                         },
-                        {
-                            "type": "nci",
-                            "name": "nciDimTime",
-                            "format": "2,1,0,0,0,100,s"
-                        }
+
                     ]
                 },
                 {
