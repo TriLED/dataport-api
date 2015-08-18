@@ -43,182 +43,140 @@ Get Node list.
             "results": [
                 {
                     "id": "00-01-02-03-04-05",
-                    "type": "power_supply",
+                    "node_type": "power_supply",
                     "device_type": "ip",
                     "name": "AC 10.0.0.1",
                     "objects": [
                         {
                             "name": "Config",
-                            "variables": [
+                            "nvo": [],
+                            "nvi": [],
+                            "nci": [
                                 {
-                                  "type": "nci",
-                                  "name": "Mac",
-                                  "value": "00-01-02-03-04-05"
-                                }
-                            ],
-                            "configurations": [
-                                {
-                                  "type": "nci",
-                                  "name": "Mac",
-                                  "format": ""
+                                    "name": "Mac",
+                                    "format": "6,0,0,0,0,0,-",
+                                    "value": "0x000000000000"
                                 }
                             ]
                         },
                         {
                             "name": "EnergyMeter",
-                            "variables": [
+                            "nvo": [
                                 {
-                                  "type": "nvi",
-                                  "name": "Calibrate",
-                                  "value": ""
+                                    "name": "Calibrate",
+                                    "format": "6,0,0,0,0,0,-",
+                                    "value": "0x000102030405"
                                 }
                             ],
-                            "configurations": [
-                                {
-                                  "type": "nvi",
-                                  "name": "Calibrate",
-                                  "format": ""
-                                }
-                            ]
+                            "nvi": [],
+                            "nci": []
                         },
                         {
                             "name": "Power",
-                            "variables": [
+                            "nvo": [
                                 {
-                                  "type": "nvi",
-                                  "name": "Output",
-                                  "value": true
-                                },
-                                {
-                                  "type": "nvo",
-                                  "name": "Voltage",
-                                  "value": "210"
-                                },
-                                {
-                                  "type": "nvo",
-                                  "name": "Current",
-                                  "value": "5"
+                                    "name": "Output",
+                                    "format": "1,1,0,0,0,1,-",
+                                    "value": "0x00"
                                 }
-                              ],
-                              "configurations": [
+                            ],
+                            "nvi": [
                                 {
-                                  "type": "nvi",
-                                  "name": "Output",
-                                  "format": ""
+                                    "name": "Voltage",
+                                    "format": "2,1,0,0,0,400,V",
+                                    "value": "0x0001"
                                 },
                                 {
-                                  "type": "nvo",
-                                  "name": "Voltage",
-                                  "format": "2,1,-2,0,0,10,V"
-                                },
-                                {
-                                  "type": "nvo",
-                                  "name": "Current",
-                                  "format": "2,1,-2,0,0,10,V"
+                                    "name": "Current",
+                                    "format": "2,1,-1,0,0,5,A",
+                                    "value": "0x0001"
                                 }
-                            ]
+                            ],
+                            "nci": []
                         }
                     ]
                 },
                 {
                     "id": "00-01-02-03-04-06",
-                    "type": "power_supply",
+                    "node_type": "power_supply",
                     "device_type": "ip",
                     "name": "AC 10.0.0.2",
                     "objects": [
                         {
                             "name": "Config",
-                            "variables": [
+                            "nvo": [],
+                            "nvi": [],
+                            "nci": [
                                 {
-                                  "type": "nci",
-                                  "name": "Mac",
-                                  "value": "00-01-02-03-04-05"
-                                }
-                            ],
-                            "configurations": [
-                                {
-                                  "type": "nci",
-                                  "name": "Mac",
-                                  "format": ""
+                                    "name": "Mac",
+                                    "format": "6,0,0,0,0,0,-",
+                                    "value": "0x000000000000"
                                 }
                             ]
                         },
                         {
                             "name": "EnergyMeter",
-                            "variables": [
+                            "nvo": [
                                 {
-                                  "type": "nvi",
-                                  "name": "Calibrate",
-                                  "value": ""
+                                    "name": "Calibrate",
+                                    "format": "6,0,0,0,0,0,-",
+                                    "value": "0x000102030405"
                                 }
                             ],
-                            "configurations": [
-                                {
-                                  "type": "nvi",
-                                  "name": "Calibrate",
-                                  "format": ""
-                                }
-                            ]
+                            "nvi": [],
+                            "nci": []
                         },
                         {
                             "name": "Power",
-                            "variables": [
+                            "nvo": [
                                 {
-                                  "type": "nvi",
-                                  "name": "Output",
-                                  "value": false
-                                },
-                                {
-                                  "type": "nvo",
-                                  "name": "Voltage",
-                                  "value": "210"
-                                },
-                                {
-                                  "type": "nvo",
-                                  "name": "Current",
-                                  "value": "5"
+                                    "name": "Output",
+                                    "format": "1,1,0,0,0,1,-",
+                                    "value": "0x00"
                                 }
-                              ],
-                              "configurations": [
+                            ],
+                            "nvi": [
                                 {
-                                  "type": "nvi",
-                                  "name": "Output",
-                                  "format": ""
+                                    "name": "Voltage",
+                                    "format": "2,1,0,0,0,400,V",
+                                    "value": "0x0001"
                                 },
                                 {
-                                  "type": "nvo",
-                                  "name": "Voltage",
-                                  "format": "2,1,-2,0,0,10,V"
-                                },
-                                {
-                                  "type": "nvo",
-                                  "name": "Current",
-                                  "format": "2,1,-2,0,0,10,V"
+                                    "name": "Current",
+                                    "format": "2,1,-1,0,0,5,A",
+                                    "value": "0x0001"
                                 }
-                            ]
+                            ],
+                            "nci": []
                         }
                     ]
                 },
                 {
                     "id": "00-01-02-03-04-06",
-                    "type": "dualline",
+                    "node_type": "dualline",
                     "device_type": "dect",
                     "name": "Dual Line 2",
                     "objects": [
                         {
                             "name": "Channel 1",
-                            "variables": [],
-                            "configurations": []
+                            "nvo": [],
+                            "nvi": [],
+                            "nci": []
                         }
                     ]
                 },
                 {
                     "id": "05-04-03-02-01-00",
-                    "type": "temperature_sensor",
+                    "node_type": "temperature_sensor",
                     "device_type": "dect",
                     "name": "Temperature Sensor 1",
                     "objects": [
-                    
+                        {
+                            "name": "Channel 2",
+                            "nvo": [],
+                            "nvi": [],
+                            "nci": []
+                        }
                     ]
                 }
             ]
