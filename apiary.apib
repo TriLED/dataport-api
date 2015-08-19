@@ -502,7 +502,7 @@ Check the cookbook for async tasks: http://restcookbook.com/Resources/asynchrone
 + Request (application/json)
 
         {
-            "id": "AP-100",
+            "name": "AP-100",
             "command": "SENT_DSDS",
             "parameters": [1,2,3]
         }
@@ -512,6 +512,18 @@ Check the cookbook for async tasks: http://restcookbook.com/Resources/asynchrone
     + Headers 
     
             Location: /v1/tasks/1234
+
+## Task [/v1/dect/tasks/{taskId}/]
+### Details [GET]
+
++ Response 200 (application/json)
+
+        {
+            "name": "AP-100",
+            "command": "SENT_DSDS",
+            "parameters": [1,2,3]
+            "status":"busy"
+        }
 
 
 # Group DECT Firmwares
