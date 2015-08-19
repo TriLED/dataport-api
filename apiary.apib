@@ -379,7 +379,8 @@ You can change the state of the `power` and the `registration_mode` of an access
 + Request ChangeRegistrationMode (application/json)
 
         {
-            "registration_mode": "on"
+            "command": "SET_DSDS",
+            "paramters": [1]
         }
         
 + Response 200 (application/json)
