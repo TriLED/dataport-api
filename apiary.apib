@@ -487,6 +487,29 @@ You'll have to upload the new firmware first, cfr: `POST /v1/dec/firmwares/`
             "error": "firmware_unavailable"
         }
 
+## Tasks [/v1/dect/tasks/]
+Tasks are used to send commands to Access Points. In the future these 
+tasks will be executed asynchronously. The response is 202 (Accepted) with
+a link to the task. Clients can poll this link to get updates about the task.
+
+(Check the cookbook for async tasks)[http://restcookbook.com/Resources/asynchroneous-operations/]
+
+### Exec Command [POST]
+
++ Request (application/json)
+
+        {
+            "id": "AP-100",
+            "command": "SENT_DSDS",
+            "parameters": [1,2,3]
+        }
+        
++ Response 202
+
+    + Headers 
+    
+            Location: /v1/tasks/1234
+
 
 # Group DECT Firmwares
 Get an overview of available firmware on the dataport. 
