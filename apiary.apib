@@ -339,7 +339,7 @@ Get details about dect access points, their `power` & `registration_mode` state.
 + Attributes
     + id: "00-01-02-03-04-05" (string, required) - unique id of the access point
     + registration_mode: off (string, required) - is the unit in registration mode or not
-    + devices (array, required) - list of devices connected to an access point
+    + clients (array, required) - list of devices connected to an access point
 
 + Response 200
 
@@ -401,13 +401,13 @@ You can change the state of the `power` and the `registration_mode` of an access
         }
 
 
-# Group DECT Devices
-## Device Details [/v1/dect/accesspoints/{accessPointId}/devices/{deviceId}/]
+# Group DECT Clients
+## Device Details [/v1/dect/accesspoints/{accessPointId}/clients/{clientId}/]
 Fetch details about a device, the state of the `registration_mode` & installed firmware.
 
 + Parameters
     + accessPointId (required, string, `00-01-02-03-04-05`) ... unique id of an access point
-    + deviceId (required, string, `00-01-02-03-04-05`) ... unique id of the device
+    + clientId (required, string, `00-01-02-03-04-05`) ... unique id of the device
 
 ### Details [GET]
 + Attributes
@@ -452,7 +452,7 @@ Fetch details about a device, the state of the `registration_mode` & installed f
             "registration_mode": "off"
         }
 
-## Firmware [/v1/dect/accesspoint/{accessPointId}/devices/{deviceId}/firmware/]
+## Firmware [/v1/dect/accesspoint/{accessPointId}/clients/{clientId}/firmware/]
 Put a json body with the firmware filename to the device you want to upgrade.
 This is an asynchronous process, the server responds with a 202 (Accepted) status code 
 which means that it will start upgrade a device.
@@ -461,7 +461,7 @@ You'll have to upload the new firmware first, cfr: `POST /v1/dec/firmwares/`
 
 + Parameters
     + accessPointId (required, string, `00-01-02-03-04-05`) ... unique id of an access point
-    + deviceId (required, string, `00-01-02-03-04-05`) ... unique id of the device
+    + clientId (required, string, `00-01-02-03-04-05`) ... unique id of the device
 
 ### Details & status [GET]
 + Attributes
