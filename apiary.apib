@@ -307,7 +307,7 @@ Get details about a specific node. A node is a group of LED lights.
 ### Send Commando [POST]
 You can send commandos to a SMALI dect node: `UPGRADE_FIRMWARE` or `UPGRADE_FIRMWARE_STATUS`. 
 
-+ Request (application/json)
++ Request Upgrade (application/json)
 
         {
             "command": "UPGRADE_FIRMWARE",
@@ -321,6 +321,21 @@ You can send commandos to a SMALI dect node: `UPGRADE_FIRMWARE` or `UPGRADE_FIRM
         {
         }
 
++ Request Status (application/json)
+
+        {
+            "command": "UPGRADE_FIRMWARE_STATUS",
+            "paramters": [
+                "firmware_v1.1.bin"
+            ]
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "state": "busy",
+            "progress": 20
+        }
 
 # Group SMALI Firmwares
 Get an overview of available firmware on the dataport. 
