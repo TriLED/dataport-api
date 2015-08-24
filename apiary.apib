@@ -345,19 +345,6 @@ Get details about dect access points, their `power` & `registration_mode` state.
 
     [Access Points List][]
     
-### Bulk update [POST]
-DEPRECATED
-
-+ Request (application/json)
-
-        [
-            {"id": "00-01-02-03-04-06", "registration_mode": "off"},
-            {"id": "00-01-02-03-04-07", "registration_mode": "on"},
-        ]
-        
-+ Response 200
-
-    [Access Points List][]     
 
 ## Access Point Details [/v1/dect/accesspoints/{accessPointId}/]
 A single access point object with all its details.
