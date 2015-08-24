@@ -322,6 +322,43 @@ You can send commandos to a SMALI dect node. For now only `UPGRADE_FIRMWARE`.
         }
 
 
+# Group SMALI Firmwares
+Get an overview of available firmware on the dataport. 
+By posting a binary to this URI you'll be able to make new firmware available for devices.
+
+## Firmwares List [/v1/network/firmwares/]
+### Overview [GET]
++ Response 200 (application/json)
+
+        {
+            "count": 2,
+            "results": [
+                "firmware_v1.0.bin",
+                "firmware_v1.1.bin"
+            ]
+        }
+
+### Upload [POST]
++ Request (multipart/form-data; boundary=---BOUNDARY)
+
+        -----BOUNDARY
+        Content-Disposition: form-data; name="file"; filename="firmware_v1.1.bin"
+        Content-Type: application/octet-stream
+        Content-Transfer-Encoding: base64
+
+        /9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0a
+        HBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIy
+        MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAABAAEDASIA
+        AhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEB
+        AAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AL+AD//Z
+        -----BOUNDARY
+
++ Response 201 (application/json)
+
+        {
+            "file": "firmware_v1.1.bin"   
+        }
+
 
 # Group DECT Access Points
 Get details about dect access points, their `power` & `registration_mode` state. It's possible to change these states.
@@ -549,43 +586,6 @@ Check the cookbook for async tasks: http://restcookbook.com/Resources/asynchrone
             "status":"busy"
         }
 
-
-# Group DECT Firmwares
-Get an overview of available firmware on the dataport. 
-By posting a binary to this URI you'll be able to make new firmware available for devices.
-
-## Firmwares List [/v1/dect/firmwares/]
-### Overview [GET]
-+ Response 200 (application/json)
-
-        {
-            "count": 2,
-            "results": [
-                "firmware_v1.0.bin",
-                "firmware_v1.1.bin"
-            ]
-        }
-
-### Upload [POST]
-+ Request (multipart/form-data; boundary=---BOUNDARY)
-
-        -----BOUNDARY
-        Content-Disposition: form-data; name="file"; filename="firmware_v1.1.bin"
-        Content-Type: application/octet-stream
-        Content-Transfer-Encoding: base64
-
-        /9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0a
-        HBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIy
-        MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAABAAEDASIA
-        AhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEB
-        AAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AL+AD//Z
-        -----BOUNDARY
-
-+ Response 201 (application/json)
-
-        {
-            "file": "firmware_v1.1.bin"   
-        }
 
 
 
