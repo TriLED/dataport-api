@@ -289,6 +289,24 @@ Get details about a specific node. A node is a group of LED lights.
     
     [Node Details][]
 
+### Send Commando [POST]
+You can send commandos to a SMALI dect node. For now only `UPGRADE_FIRMWARE`. 
+
++ Request (application/json)
+
+        {
+            "command": "UPGRADE_FIRMWARE",
+            "paramters": [
+                "firmware_v1.1.bin"
+            ]
+        }
+        
++ Response 200 (application/json)
+
+        {
+        }
+
+
 
 # Group DECT Access Points
 Get details about dect access points, their `power` & `registration_mode` state. It's possible to change these states.
@@ -306,16 +324,13 @@ Get details about dect access points, their `power` & `registration_mode` state.
                     "registration_mode": false,
                     "clients": [
                         {
-                            "id": "01-01-01-01-01-01",
-                            "rssi": 1434,
-                            "online": true
+                            "terminal_id": "7",
+                            "ipui": "44:f2:30:60:43"
                         },
                         {
-                            "id": "01-01-01-01-01-01",
-                            "rssi": 1434,
-                            "online": false
+                            "terminal_id": "8",
+                            "ipui": "44:f2:31:70:43"
                         }
-                        
                     ]
                 },
                 {
@@ -367,13 +382,13 @@ A single access point object with all its details.
             "clients": []
         }
 
-### Update [PUT]
-You can change the state of the `power` and the `registration_mode` of an access point. 
+### Send Commando [POST]
+You can send commandos to a dect access point: `DELETE_REGISTRATION` or `SET_REGISTRATION_MODE`.
 
-+ Request ChangeRegistrationMode (application/json)
++ Request (application/json)
 
         {
-            "command": "SET_DSDS",
+            "command": "DELETE_REGISTRATION",
             "paramters": [1]
         }
         
