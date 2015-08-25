@@ -331,8 +331,12 @@ You can send commandos to a SMALI dect node: `UPGRADE_FIRMWARE` or `UPGRADE_FIRM
 + Response 200 (application/json)
 
         {
-            "state": "busy",
-            "progress": 20
+            "status": "busy",
+            "progress": 20,
+            "history": [
+                "foo",
+                "bar"
+            ]
         }
 
 # Group SMALI Firmwares
