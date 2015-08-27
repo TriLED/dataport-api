@@ -345,9 +345,10 @@ You can send commandos to a SMALI dect node: `UPGRADE_FIRMWARE` or `UPGRADE_FIRM
 + Response 200 (application/json)
 
         {
-            "status": "busy",
+            "status": "Busy writing firmware",
+            "busy": true,
             "progress": 20,
-            "history": [
+            "logging": [
                 "foo",
                 "bar"
             ]
